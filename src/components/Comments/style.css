@@ -4,9 +4,23 @@
     background-color: white;
 }
 
+#comment-username {
+    color: #02b7e2;
+}
+
+.comment-dropdown{
+    height: auto;
+    max-height: 300px;
+    overflow-x: hidden;
+}
+
 .comment-row {
-    border-bottom: 1px dashed black;
-    border-bottom-width: 90%;
+    border-bottom: 1px dashed #d8d9d9;
+}
+
+.comment-user-img {
+    height: 50px;
+    border-radius: 100%;
 }
 
 .comment-details {
@@ -24,4 +38,22 @@
 
 #alert-btn {
     background-color: #02b7e2;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 10px;
+}
+  
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+   
+::-webkit-scrollbar-thumb {
+    background: #8c8c8e;
+    border-radius: 10px;
+}
+  
+::-webkit-scrollbar-thumb:hover {
+    background: #404041; 
 }
