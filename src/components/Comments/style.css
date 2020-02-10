@@ -4,6 +4,15 @@
     background-color: white;
 }
 
+.comment-row {
+    border-bottom: 1px dashed black;
+    border-bottom-width: 90%;
+}
+
+.comment-details {
+    margin-bottom: 2px;
+}
+
 .property-image {
     box-shadow: 3px 3px 10px #8c8c8e;
     margin-bottom: 40px;
