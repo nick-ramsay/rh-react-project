@@ -8,6 +8,19 @@
     color: #02b7e2;
 }
 
+#comment-mark-seen {
+    color: goldenrod;
+}
+
+#comment-mark-seen:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#comment-elapsed-time {
+    color: #8c8c8e;
+}
+
 .comment-dropdown{
     height: auto;
     max-height: 300px;
