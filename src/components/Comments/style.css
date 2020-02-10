@@ -21,6 +21,10 @@
     color: #8c8c8e;
 }
 
+#comment-line-break {
+    color: #8c8c8e;
+}
+
 .comment-dropdown{
     height: auto;
     max-height: 300px;
@@ -49,7 +53,7 @@
     height: 26px;
 }
 
-#alert-btn {
+#active-alert-btn {
     background-color: #02b7e2;
 }
 
