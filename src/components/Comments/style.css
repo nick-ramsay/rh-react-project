@@ -57,6 +57,14 @@
     background-color: #02b7e2;
 }
 
+#inactive-alert-btn {
+    border: 1px solid #8c8c8e;
+}
+
+#inactive-alert-btn:focus {
+    box-shadow: none;
+}
+
 ::-webkit-scrollbar {
     width: 10px;
     border-radius: 10px;

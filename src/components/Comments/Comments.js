@@ -10,31 +10,40 @@ const Comments = () => {
 
 
     const [comments, setComments] = useState([]);
-    var [unacknowledgedCount] = useState(0)
+    var [unacknowledgedCount, setUnacknowledgedCount] = useState(0)
 
     useEffect(() => {
         setComments(CommentData);
-        setUnacknowledged();
+        setUnacknowledgedCount();
     });
 
-    const setUnacknowledged = () => {
+    setUnacknowledgedCount = () => {
         for (var i = 0; i < CommentData.length; i++) {
             if (CommentData[i].acknowledged == false) {
                 unacknowledgedCount += 1
             }
         }
-        console.log(unacknowledgedCount);
     }
 
-    const setCommentRead = (event) => {
+
+    const setCommentRead = event => {
         event.preventDefault();
+
+        var currentComments = comments;
 
         var selectedCommentIndex = event.currentTarget.dataset.commentIndex;
 
-        console.log(selectedCommentIndex);
+        console.log(currentComments);
 
-        comments[selectedCommentIndex].acknowledged = true;
-        console.log(comments[selectedCommentIndex].acknowledged);
+        currentComments[selectedCommentIndex].acknowledged = true;
+
+        //console.log(currentComments);
+
+        setComments(comments => currentComments);
+
+        console.log(comments);
+
+
     }
 
     return (
@@ -46,6 +55,7 @@ const Comments = () => {
                             {unacknowledgedCount > 0 &&
                                 <button id="active-alert-btn" className="btn btn-custom float-right m-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img className="icon-image" src={AlertIcon} />
+                                    <span class="badge badge-pill badge-danger">{unacknowledgedCount}</span>
                                 </button>
                             }
                             {unacknowledgedCount === 0 &&
@@ -56,22 +66,28 @@ const Comments = () => {
                             <div class="dropdown-menu mt-1 mr-2 comment-dropdown" aria-labelledby="dropdownMenuButton">
                                 <form>
                                     <div className="col-md-12">
-                                        {comments.map((comment, index) => (
-                                            < div className="row comment-row m-1 pb-1 pt-1" >
-                                                <div className="col-md-2">
-                                                    <img className="img-fluid comment-user-img" src={comment.user.image.thumb_url} />
+                                        {comments
+                                            .sort(({ id: lastID }, { id: currentID }) => lastID - currentID)
+                                            .map((comment, index) => (
+                                                < div className="row comment-row m-1 pb-1 pt-1" >
+                                                    <div className="col-md-2">
+                                                        <img className="img-fluid comment-user-img" src={comment.user.image.thumb_url} />
+                                                    </div>
+                                                    <div className="col-md-10">
+                                                        <p className="comment-details" id="comment-username">{comment.user.first_name} {comment.user.last_name}</p>
+                                                        <p className="comment-details" id="comment-body">{comment.body}</p>
+                                                        <p className="comment-details">
+                                                            <span id="comment-elapsed-time">{moment().diff(moment(comment.dates.created.date_time, "DD/MM/YYYY"), "days")} days ago</span>
+                                                            {!comment.acknowledged &&
+                                                                <span>
+                                                                    <span id="comment-line-break"> | </span>
+                                                                    <span id="comment-mark-seen" data-comment-index={index} onClick={setCommentRead}>Mark as Seen</span>
+                                                                </span>
+                                                            }
+                                                        </p>
+                                                    </div>
                                                 </div>
-                                                <div className="col-md-10">
-                                                    <p className="comment-details" id="comment-username">{comment.user.first_name} {comment.user.last_name}</p>
-                                                    <p className="comment-details" id="comment-body">{comment.body}</p>
-                                                    <p className="comment-details"><span id="comment-elapsed-time">2 minutes ago</span>
-                                                        {comment.acknowledged == false &&
-                                                            <span id="comment-mark-seen" data-comment-index={index} onClick={setCommentRead}><span id="comment-line-break"> | </span>Mark as Seen</span>
-                                                        }
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        ))
+                                            ))
                                         }
                                         <div className="row">
                                             <div className="col-md-12 text-center">
