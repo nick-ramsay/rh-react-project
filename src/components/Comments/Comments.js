@@ -9,36 +9,30 @@ import "./style.css";
 const Comments = () => {
 
 
-    const [comments, setComments] = useState([]);
+    var [comments, setComments] = useState(CommentData);
     var [unacknowledgedCount, setUnacknowledgedCount] = useState(0)
 
     useEffect(() => {
         setComments(CommentData);
-        setUnacknowledgedCount();
-    }, []);
+        getUnacknowledgedCount();
+    },[]);
 
-    setUnacknowledgedCount = () => {
-        for (var i = 0; i < CommentData.length; i++) {
-            if (CommentData[i].acknowledged === false) {
-                unacknowledgedCount += 1
+    const getUnacknowledgedCount = () => {
+        setUnacknowledgedCount(unacknowledgedCount = 0);
+        for (var i = 0; i < comments.length; i++) {
+            if (comments[i].acknowledged === false) {
+                setUnacknowledgedCount(unacknowledgedCount += 1);
             }
         }
     }
 
-
     const setCommentRead = event => {
         event.preventDefault();
-
         var currentComments = comments;
-
         var selectedCommentIndex = event.currentTarget.dataset.commentIndex;
-
-        console.log(currentComments);
-
         currentComments[selectedCommentIndex].acknowledged = true;
-
         setComments(comments => currentComments);
-
+        getUnacknowledgedCount();
     }
 
     return (
