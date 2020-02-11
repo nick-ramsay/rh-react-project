@@ -15,11 +15,11 @@ const Comments = () => {
     useEffect(() => {
         setComments(CommentData);
         setUnacknowledgedCount();
-    });
+    }, []);
 
     setUnacknowledgedCount = () => {
         for (var i = 0; i < CommentData.length; i++) {
-            if (CommentData[i].acknowledged == false) {
+            if (CommentData[i].acknowledged === false) {
                 unacknowledgedCount += 1
             }
         }
@@ -37,12 +37,7 @@ const Comments = () => {
 
         currentComments[selectedCommentIndex].acknowledged = true;
 
-        //console.log(currentComments);
-
         setComments(comments => currentComments);
-
-        console.log(comments);
-
 
     }
 
@@ -54,24 +49,24 @@ const Comments = () => {
                         <div className="dropdown">
                             {unacknowledgedCount > 0 &&
                                 <button id="active-alert-btn" className="btn btn-custom float-right m-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img className="icon-image" src={AlertIcon} />
-                                    <span class="badge badge-pill badge-danger">{unacknowledgedCount}</span>
+                                    <img className="icon-image" alt="Active Alert Icon" src={AlertIcon} />
+                                    <span className="badge badge-pill badge-danger">{unacknowledgedCount}</span>
                                 </button>
                             }
                             {unacknowledgedCount === 0 &&
                                 <button id="inactive-alert-btn" className="btn btn-custom float-right m-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img className="icon-image" src={InactiveAlertIcon} />
+                                    <img className="icon-image" alt="Inactive Alert Icon" src={InactiveAlertIcon} />
                                 </button>
                             }
-                            <div class="dropdown-menu mt-1 mr-2 comment-dropdown" aria-labelledby="dropdownMenuButton">
+                            <div className="dropdown-menu mt-1 mr-2 comment-dropdown" aria-labelledby="dropdownMenuButton">
                                 <form>
                                     <div className="col-md-12">
                                         {comments
                                             .sort(({ id: lastID }, { id: currentID }) => lastID - currentID)
                                             .map((comment, index) => (
-                                                < div className="row comment-row m-1 pb-1 pt-1" >
+                                                <div key={index} className="row comment-row m-1 pb-1 pt-1" >
                                                     <div className="col-md-2">
-                                                        <img className="img-fluid comment-user-img" src={comment.user.image.thumb_url} />
+                                                        <img className="img-fluid comment-user-img" alt={comment.user.first_name + comment.user.last_name + "Image"} src={comment.user.image.thumb_url} />
                                                     </div>
                                                     <div className="col-md-10">
                                                         <p className="comment-details" id="comment-username">{comment.user.first_name} {comment.user.last_name}</p>
@@ -102,7 +97,7 @@ const Comments = () => {
                 </div>
                 <div className="row">
                     <div className="col-md-6 offset-md-3 mt-3">
-                        <img className="img-fluid property-image" src={PropertyImage} />
+                        <img className="img-fluid property-image" alt="Property" src={PropertyImage} />
                     </div>
                 </div>
             </div>
