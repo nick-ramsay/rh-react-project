@@ -4,6 +4,7 @@ import AlertIcon from "../../images/alert_icon.png";
 import InactiveAlertIcon from "../../images/inactive-alert-icon.png"
 import PropertyImage from "../../images/property.jpg";
 import CommentData from "../../data/comment-data.json";
+import GithubLogo from "../../images/GitHub_Logo.png";
 import "./style.css";
 
 const Comments = () => {
@@ -15,7 +16,7 @@ const Comments = () => {
     useEffect(() => {
         setComments(CommentData);
         getUnacknowledgedCount();
-    },[]);
+    }, []);
 
     const getUnacknowledgedCount = () => {
         setUnacknowledgedCount(unacknowledgedCount = 0);
@@ -79,7 +80,7 @@ const Comments = () => {
                                             ))
                                         }
                                         <div className="row">
-                                            <div className="col-md-12 text-center">
+                                            <div className="col-md-12">
                                                 <button type="button" className="btn btn-success">Mark As Approved</button>
                                             </div>
                                         </div>
@@ -95,6 +96,11 @@ const Comments = () => {
                     </div>
                 </div>
             </div>
+            <footer className="footer">
+                <div className="container text-center">
+                    <a href="https://github.com/nick-ramsay/rh-react-project" target="_blank"><img src={GithubLogo} alt="Github Logo" width="60px" /></a>
+                </div>
+            </footer>
         </div >
     )
 }
