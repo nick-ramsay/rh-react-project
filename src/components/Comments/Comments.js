@@ -56,7 +56,7 @@ const Comments = () => {
                                 <form>
                                     <div className="col-md-12">
                                         {comments
-                                            .sort(({ id: lastID }, { id: currentID }) => lastID - currentID)
+                                            .sort(({ id: lastID }, { id: currentID }) => currentID - lastID)
                                             .map((comment, index) => (
                                                 <div key={index} className="row comment-row m-1 pb-1 pt-1" >
                                                     <div className="col-md-2">
