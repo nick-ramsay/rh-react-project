@@ -81,7 +81,7 @@ const Comments = () => {
                                         }
                                         <div className="row">
                                             <div className="col-md-12">
-                                                <button type="button" className="btn btn-success">Mark As Approved</button>
+                                                <button type="button" className="btn btn-success btn-block">Mark As Approved</button>
                                             </div>
                                         </div>
                                     </div>
@@ -98,7 +98,7 @@ const Comments = () => {
             </div>
             <footer className="footer">
                 <div className="container text-center">
-                    <a href="https://github.com/nick-ramsay/rh-react-project" target="_blank"><img src={GithubLogo} alt="Github Logo" width="60px" /></a>
+                    <a href="https://github.com/nick-ramsay/rh-react-project" target="_blank" rel="noopener noreferrer"><img src={GithubLogo} alt="Github Logo" width="60px" /></a>
                 </div>
             </footer>
         </div >
